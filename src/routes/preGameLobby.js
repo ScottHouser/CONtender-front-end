@@ -1,17 +1,17 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { connect, useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function PreGameLobby({...props}) {
 
-    const [userName, setUserName] = useState('');
-    const [userId, setUserId] = useState('');
-    const [lobbyId, setLobbyId] = useState('')
-    const [gameState, setGameState ] = useState('')
-    const dispatch = useDispatch()
-    const reduxId = useSelector(state => state.playerData)
-    const navigate = useNavigate();
+  const [userName, setUserName] = useState('');
+  const [userId, setUserId] = useState('');
+  const [lobbyId, setLobbyId] = useState('')
+  const [gameState, setGameState ] = useState('')
+  const dispatch = useDispatch()
+  const reduxId = useSelector(state => state.playerData)
+  const navigate = useNavigate();
 
     useEffect(() => {
        
@@ -184,25 +184,21 @@ export default function PreGameLobby({...props}) {
     const reduxTest = ()=>{
         console.log(reduxId)
     }
-
-    const reduxButton = () => {
-        if(userName && lobbyId){
-            return(
-                <button onClick={reduxTest} className={'btn'}>ReduxButton</button>
-            )
-        }
-    }
     
 
     return (
         <div className={'Container'}>
              <div className='title-container'>
-                <p className='title'>{'INQUIZITOR'}</p>
+                <p className='title'>{'CONtender'}</p>
             </div>
 
-            {returnCreateLobbyInput()}
+            <div className='full-width-centered'>
 
-            {returnLobbyCodeDisplay()}
+                {returnCreateLobbyInput()}
+
+                {returnLobbyCodeDisplay()}
+
+            </div>
             
             <div className='lobby-roster-container'>
                 {returnPlayersHeader()}
@@ -212,4 +208,4 @@ export default function PreGameLobby({...props}) {
 
         </div>
     );
-  }
+}

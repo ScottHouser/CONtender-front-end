@@ -6,8 +6,6 @@ import {
   Route
 } from "react-router-dom";
 import App from "./App";
-import Expenses from "./routes/expenses";
-import Invoices from "./routes/invoices";
 import ExistingGame from "./routes/existingGame";
 import PreGameLobby from "./routes/preGameLobby";
 import GameBoard from "./routes/gameBoard";
@@ -22,8 +20,6 @@ render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App client={client} />} />
-        <Route path="expenses" element={<Expenses />} />
-        <Route path="invoices" element={<Invoices />} />
         <Route path="existingGame" element={<ExistingGame client={client}/>} />
         <Route path="preGameLobby" element={<PreGameLobby client={client} />} />
         <Route path="gameBoard" element={<GameBoard client={client} /> } />
