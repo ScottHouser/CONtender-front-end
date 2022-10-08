@@ -2,10 +2,12 @@
   "name": "inquizitor",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://ScottHouser.github.io/CONtender-front-end",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
+    "gh-pages": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
@@ -16,6 +18,8 @@
     "websocket": "^1.0.34"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
