@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/CONtender-front-end/static/css/main.5f98eb18.css",
-    "main.js": "/CONtender-front-end/static/js/main.58796e36.js",
+    "main.js": "/CONtender-front-end/static/js/main.c45f85ef.js",
     "static/media/logo.svg": "/CONtender-front-end/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/CONtender-front-end/index.html",
     "main.5f98eb18.css.map": "/CONtender-front-end/static/css/main.5f98eb18.css.map",
-    "main.58796e36.js.map": "/CONtender-front-end/static/js/main.58796e36.js.map"
+    "main.c45f85ef.js.map": "/CONtender-front-end/static/js/main.c45f85ef.js.map"
   },
   "entrypoints": [
     "static/css/main.5f98eb18.css",
-    "static/js/main.58796e36.js"
+    "static/js/main.c45f85ef.js"
   ]
 }
