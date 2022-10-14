@@ -354,8 +354,9 @@ export default function GameBoard({...props}) {
           winningPlayers.push(object.playerId)
         }
       })
-
-      gameState.votesForImpostor.forEach((item, index)=>{
+      //calulate most common item in impostor votes
+      console.log(gameState.votesForImpostor)
+      gameState.votesForImpostor.forEach((item, index)=>{//remove this layer
         let ItemInquestion = item
         let occurances = 0
         gameState.votesForImpostor.forEach((item2,index2) => {
@@ -370,17 +371,22 @@ export default function GameBoard({...props}) {
       })
 
       if(numberOfTimes/gameState.players.length <= .5){
+        console.log(numberOfTimes/gameState.players.length)
         winningPlayers.push(gameState?.impostorId)
-      }else if(numberOfTimes/gameState.players.length > .5){
-        gameState.players.forEach(player => {
-          if(player.playerID == mostFrequentItem){
-            if(player.playerID == gameState.impostorId ){
-              winner = 'Contenders! (impostor loses)'
-            }else{
-              winner = 'impostor'
-            }
-          }
-        })
+      }
+      else if(numberOfTimes/gameState.players.length > .5){
+        if(mostFrequentItem !== gameState?.impostorId){
+          winningPlayers.push(gameState?.impostorId)
+        }
+        // gameState.players.forEach(player => {
+        //   if(player.playerID == mostFrequentItem){
+        //     if(player.playerID == gameState.impostorId ){
+        //       winner = 'Contenders! (impostor loses)'
+        //     }else{
+        //       winner = 'impostor'
+        //     }
+        //   }
+        // })
       }
 
       winningPlayers.forEach(player => {

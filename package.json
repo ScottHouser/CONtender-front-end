@@ -1,7 +1,7 @@
 {
   "name": "inquizitor",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://ScottHouser.github.io/CONtender-front-end",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
@@ -20,6 +20,7 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "deploy2": "gh-pages -b main -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
