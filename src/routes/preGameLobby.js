@@ -42,7 +42,7 @@ export default function PreGameLobby({...props}) {
 
     }, []);
       
-    function handleClick3(userName, userId) {
+    function makeALobby(userName, userId) {
         if(userName !== ''){
             props.client.send(JSON.stringify({
             type: "makeNewLobby",
@@ -54,7 +54,7 @@ export default function PreGameLobby({...props}) {
         }
     }
 
-    function handleClick1() {
+    function startGame() {
         if(userName && lobbyId){
             props.client.send(JSON.stringify({
                 type: "startTheGame",
@@ -89,16 +89,6 @@ export default function PreGameLobby({...props}) {
         }
     }
 
-
-
-    function testRedux()  {
-
-        dispatch({type:'ADD_USER_ID',payload:'test'})
-
-        console.log(reduxId)
-
-    }
-
     const returnPlayersInQueue = (array) =>{
         if(!array){
             return(
@@ -129,8 +119,8 @@ export default function PreGameLobby({...props}) {
         if(!reduxId.lobbyId){
             return(
                 <>
-                    <input onChange={ e =>{setUserName(e.target.value)}} placeholder='Player Name' className="existing-game-input-text" type="text"/>
-                    <button onClick={()=>{handleClick3(userName, userId)}} className={'btn'}>CREATE LOBBY</button>
+                    <input onChange={ e =>{setUserName(e.target.value)}} placeholder='Player Name' className="existing-game-input-text" type="text" maxLength="15"/>
+                    <button onClick={()=>{makeALobby(userName, userId)}} className={'btn'}>CREATE LOBBY</button>
                 </>
             )
         }
@@ -173,7 +163,7 @@ export default function PreGameLobby({...props}) {
                 </div>
                 <div style={{flex:1, fontSize:20, display:'flex', alignItems:'center', justifyContent:'flex-end'}}>
                     {AmITheHost() &&
-                        <button style={{marginBottom:'20px'}} onClick={handleClick1} className={'btn'}>START GAME</button>
+                        <button style={{marginBottom:'20px'}} onClick={startGame} className={'btn'}>START GAME</button>
                     }
                 </div>  
             </div>
@@ -181,13 +171,9 @@ export default function PreGameLobby({...props}) {
        }
     }
 
-    const reduxTest = ()=>{
-        console.log(reduxId)
-    }
-    
-
     return (
         <div className={'Container'}>
+            <div className='max-width-container'>
              <div className='title-container'>
                 <p className='title'>{'CONtender'}</p>
             </div>
@@ -202,10 +188,11 @@ export default function PreGameLobby({...props}) {
             
             <div className='lobby-roster-container'>
                 {returnPlayersHeader()}
-                
-                {returnPlayersInQueue(gameState.players)}
+                <div className='full-width-centered'>
+                    {returnPlayersInQueue(gameState.players)}
+                </div>
             </div>    
-
+            </div>
         </div>
     );
 }

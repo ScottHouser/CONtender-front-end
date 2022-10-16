@@ -1,15 +1,26 @@
 .Container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   font-family: 'Fira Sans';
   background-color: whitesmoke;
   padding: 20px;
   background: linear-gradient(-45deg,  black,  white);
 	background-size: 400% 400%;
 	animation: gradient 20s ease infinite;
-  min-height: 94vh;
+  min-height: 100vh;
   font-family: monospace;
+}
 
+.gradient-text {
+  /* background: linear-gradient(0deg,  black,  white);
+  animation: gradient2 20s ease infinite;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+  color: black;
+
+  /* animation: color-change 20s infinite; */
 }
 
 .full-width-centered {
@@ -18,6 +29,19 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+}
+
+/* p {
+  animation: color-change 20s infinite;
+} */
+
+@keyframes color-change {
+  0% { color: black; }
+  22% { color: black; }
+  23% { color: white }
+  72% { color: white; }
+  73% { color: black }
+  100% { color: black; }
 }
 
 @keyframes gradient {
@@ -29,6 +53,17 @@
 	}
 	100% {
 		background-position: 0% 50%;
+	}
+}
+@keyframes gradient2 {
+	0% {
+		background-position: 0% 10%;
+	}
+	50% {
+		background-position: 100% 90%;
+	}
+	100% {
+		background-position: 0% 10%;
 	}
 }
 
@@ -261,6 +296,13 @@
   padding-right: 10px;
   border: 2px solid black;
   box-shadow: 5px 5px black;
+  width: 100%;
+  max-width: 850px;
+}
+
+.max-width-container {
+  max-width: 800px;
+  width: 100%;
 }
 
 .player-in-lobby-row {
@@ -275,6 +317,21 @@
   border-radius: 20px;
   background-color: white;
   animation: loader .5s normal forwards ease-in-out;
+  max-width: 700px;
+  width: 100%;
+}
+
+.with-hover{
+  background-color: white !important;
+}
+
+.with-grey {
+  background-color: #D3D3D3 !important;
+}
+
+.with-hover:hover {
+  background-color: #4CAF50 !important;
+  border-color: white;
 }
 
 @keyframes loader {
@@ -324,6 +381,20 @@
   box-shadow: 6px 6px black;
 }
 
+.white-rounded-background-title {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* background: linear-gradient(-45deg,  white,  black); */
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  box-shadow: 6px 6px black;
+}
+
 .selected-contender {
   background-color: #4CAF50;
 }
@@ -333,7 +404,6 @@
 }
 
 .app-button {
-  min-width: 60px;
   margin-top: 10px;
   color: white;
   font-size: 20px;

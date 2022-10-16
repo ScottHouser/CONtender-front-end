@@ -56,13 +56,15 @@ export default function ExistingGame({...props}) {
 
   return (
     <div className={'Container'}>
-      <div className='title-container'>
-        <p className='title'>{'CONtender'}</p>
-      </div>
-      <div className='full-width-centered'>
-        <input onChange={ e =>{setUserName(e.target.value)}} placeholder='PLAYER NAME' className="existing-game-input-text" type="text" maxLength="20"/>
-        <input onChange={ e =>{setLobbyId(e.target.value)}} placeholder='Lobby Code' className="existing-game-input-text" type="text" maxLength="4" style={{textTransform:'uppercase'}}/>
-          {returnJoinGameButton()}
+      <div className='max-width-container'>
+        <div className='title-container'>
+          <p className='title'>{'CONtender'}</p>
+        </div>
+        <div className='full-width-centered'>
+          <input onChange={ e =>{setUserName(e.target.value)}} placeholder='PLAYER NAME' className="existing-game-input-text" type="text" maxLength="15"/>
+          <input onChange={ e =>{setLobbyId(e.target.value)}} placeholder='Lobby Code' className="existing-game-input-text" type="text" maxLength="4" style={{textTransform:'uppercase'}}/>
+            {returnJoinGameButton()}
+        </div>
       </div>
     </div>
   );

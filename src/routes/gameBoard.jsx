@@ -164,12 +164,28 @@ export default function GameBoard({...props}) {
     }
 
     answersArray.sort((a, b) => (a.playerName > b.playerName) ? 1 : -1)
+    console.log(answersArray);
 
     let playerAnswersDisplay = answersArray.map(item => {
+
+      let onClick = () => {};
+      let outterStyle = 'player-in-lobby-row';
+      let canSubmitVoteForImpostor = gameState && gameState.stageOfTheGame > 1 && !votedForImpostor;
+
+
+      if(canSubmitVoteForImpostor){
+        if(item.playerId !== reduxId.id){
+          onClick = () => {submitVoteForImpostor(item.playerId)}
+          outterStyle = 'player-in-lobby-row with-hover'
+        }else{
+          outterStyle = 'player-in-lobby-row with-grey'
+        }
+
+      }
                
       return (
         <>
-          <div className='player-in-lobby-row' >
+          <div className={outterStyle} onClick={onClick}>
             <div style={{flex:1, display:'flex', flexDirection:'row',alignItems:'center'}}>
               <div style={{width:'40px', height:'40px', backgroundColor:'crimson',borderRadius:'90px',margin:'6px'}}></div>
                 <p style={{fontSize:20, margin:'0px'}}>{item.playerName}</p>
@@ -265,7 +281,7 @@ export default function GameBoard({...props}) {
     }
   }
 
-  const voteForImpostor = () => {
+  const voteForImpostor = () => { //here for impostor vote
 
     if(gameState && gameState.directionsToPlayersTakeAction){
       return(
@@ -292,8 +308,16 @@ export default function GameBoard({...props}) {
     }
   }
 
-  const questionsOver = () => {
+  const questionsOver = () => {//gameState.votesForImpostor.length === gameState.players.length
     if(gameState && gameState.stageOfTheGame > 1){
+      return(true)
+      }else{
+        return(false)
+    }
+  }
+
+  const questionsAndVotingOver = () => {
+    if(gameState && gameState.stageOfTheGame > 1 && gameState.votesForImpostor.length === gameState.players.length){
       return(true)
       }else{
         return(false)
@@ -355,7 +379,6 @@ export default function GameBoard({...props}) {
         }
       })
       //calulate most common item in impostor votes
-      console.log(gameState.votesForImpostor)
       gameState.votesForImpostor.forEach((item, index)=>{//remove this layer
         let ItemInquestion = item
         let occurances = 0
@@ -371,7 +394,6 @@ export default function GameBoard({...props}) {
       })
 
       if(numberOfTimes/gameState.players.length <= .5){
-        console.log(numberOfTimes/gameState.players.length)
         winningPlayers.push(gameState?.impostorId)
       }
       else if(numberOfTimes/gameState.players.length > .5){
@@ -413,12 +435,13 @@ export default function GameBoard({...props}) {
 
   return (
     <div className={'Container'}>
+      <div className='max-width-container'>
 
       <div className='title-container'>
         {returnHeaderText()}
       </div>
 
-      {impostorVoteContainer()}
+      {/* {impostorVoteContainer()} */}
       {returnWinner()}
 
       {!questionsOver() && hasPlayerSubmittedAnswer() && 
@@ -439,11 +462,11 @@ export default function GameBoard({...props}) {
       }
            
            
-      <div className='lobby-roster-container'>
+      <div className='full-width-centered'>
         {returnPlayersAndAnswers(1)}
       </div>
             
-      {amITheHost() && hasPlayerSubmittedAnswer() && questionsOver() &&
+      {amITheHost() && hasPlayerSubmittedAnswer() && questionsAndVotingOver() &&
         <div className='full-width-centered'>
           <button
             className='app-button unselected-contender'
@@ -453,7 +476,7 @@ export default function GameBoard({...props}) {
           </button>
         </div>
       }
-            
+    </div>        
     </div>
   );
 }
