@@ -121,6 +121,16 @@ export default function PreGameLobby({...props}) {
                 <>
                     <input onChange={ e =>{setUserName(e.target.value)}} placeholder='Player Name' className="existing-game-input-text" type="text" maxLength="15"/>
                     <button onClick={()=>{makeALobby(userName, userId)}} className={'btn'}>CREATE LOBBY</button>
+                    <div className='white-rounded-background-title'>
+                        <span>
+                            <span className='gradient-text' style={{fontSize:'26px'}}>{'How to Play: '}</span>
+                            <span className='gradient-text' style={{fontSize:'20px'}}>{'CONtender is game of social deduction and absurd debate. Players are given a hand of condenders to submit for a crazy challenge. The twist is that one player never sees the challenge. They are the impostor and must avoid detection as honest players try to sus them out.'}</span>
+                        </span>
+                        <span style={{marginTop:'30px'}}>
+                            <span className='gradient-text' style={{fontSize:'26px'}}>{'How to start: '}</span>
+                            <span className='gradient-text' style={{fontSize:'20px'}}>{'Click CREATE GAME and create a player name. This will put you in a lobby with a unique lobby ID. Share this with the friends you want to join. They will need to click JOIN GAME and enter the lobby ID along with a player name.'}</span>
+                        </span>
+                    </div>
                 </>
             )
         }
@@ -159,10 +169,13 @@ export default function PreGameLobby({...props}) {
                         </g>
                     </svg>
                     <p>{'Players ready: '}</p>
-                    <p style={{textAlign:'end'}}>{ returnPlayerCount()+ '/6' }</p>
+                    <p style={{textAlign:'end'}}>{ returnPlayerCount()+ '/7' }</p>
                 </div>
                 <div style={{flex:1, fontSize:20, display:'flex', alignItems:'center', justifyContent:'flex-end'}}>
-                    {AmITheHost() &&
+                    {returnPlayerCount() < 3 &&
+                        <p style={{textAlign:'end'}}>{'3 or more players required'}</p>
+                    }
+                    {AmITheHost() && returnPlayerCount() > 2 &&
                         <button style={{marginBottom:'20px'}} onClick={startGame} className={'btn'}>START GAME</button>
                     }
                 </div>  

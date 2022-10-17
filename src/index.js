@@ -13,8 +13,8 @@ import GameBoard from "./routes/gameBoard";
 import {Provider} from 'react-redux'
 import store from './redux/store'
 import { w3cwebsocket as W3CWebSocket } from 'websocket';
-const client = new W3CWebSocket('ws://73.217.46.56:8000');
-//const client = new W3CWebSocket('ws://127.0.0.1:8000');
+//const client = new W3CWebSocket('ws://73.217.46.56:8000');
+const client = new W3CWebSocket('ws://127.0.0.1:8000');
 
 const rootElement = document.getElementById("root");
 render(
