@@ -14,6 +14,10 @@ const postsReducer = (state = INITIAL_STATE, action) => {
             
             const newState = Object.assign({}, state, {id: action.payload.id, lobbyId: action.payload.lobbyId, playerName: action.payload.playerName});
             return newState
+        case "CLEAR_PLAYER":
+            
+            const newClearState = Object.assign({}, state, {id: '', lobbyId: '', playerName: ''});
+            return newClearState
         default: return state
     }
 }

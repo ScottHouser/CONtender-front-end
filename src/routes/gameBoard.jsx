@@ -1,6 +1,7 @@
 import '../App.css';
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function GameBoard({...props}) {
   const [gameState, setGameState ] = useState('')
@@ -8,6 +9,8 @@ export default function GameBoard({...props}) {
   const [votedForImpostor, setVotedForImpostor ] = useState(false)
   const [countDownTimer, setCountDownTimer] = useState(59)
   const reduxId = useSelector(state => state.playerData)
+  const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   useEffect(() => {
        
@@ -26,6 +29,10 @@ export default function GameBoard({...props}) {
       if(dataFromServer.type === 'GAME_STARTING'){
         setVotedForImpostor(false)
       }
+      if(dataFromServer.type === 'LOBBY_CLOSED'){
+        window.alert('player left lobby. Game disbanded')
+        navigate('/')
+      }
     }
 
     props.client.send(JSON.stringify({
@@ -34,6 +41,10 @@ export default function GameBoard({...props}) {
       userId: reduxId.id,
       lobbyId: reduxId.lobbyId
     }))
+
+    return () => {
+      dispatch({type:'UPDATE_PLAYER',payload: {}});
+    };
   }, []);
 
   const returnCheckSvg = () => {

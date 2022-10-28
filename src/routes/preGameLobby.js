@@ -33,12 +33,22 @@ export default function PreGameLobby({...props}) {
             setGameState(dataFromServer.payload)
           }
 
+          if(dataFromServer.type === 'LOBBY_CLOSED'){
+            window.alert('player left lobby. Game disbanded')
+            dispatch({type:'UPDATE_PLAYER',payload: {}});
+            console.log('fuck')
+            navigate('/')
+          }
+
           if(dataFromServer.type === 'GAME_STARTING'){
             navigate('/GameBoard')
           }
 
           console.log('got reply! ',dataFromServer)
         }
+        // return () => {
+        //     dispatch({type:'UPDATE_PLAYER',payload: {}});
+        // };
 
     }, []);
       
