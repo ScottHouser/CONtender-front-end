@@ -175,7 +175,6 @@ export default function GameBoard({...props}) {
     }
 
     answersArray.sort((a, b) => (a.playerName > b.playerName) ? 1 : -1)
-    console.log(answersArray);
 
     let playerAnswersDisplay = answersArray.map(item => {
 
@@ -196,7 +195,7 @@ export default function GameBoard({...props}) {
                
       return (
         <>
-          <div className={outterStyle} onClick={onClick}>
+          <div key={item.playerId} className={outterStyle} onClick={onClick}>
             <div style={{flex:1, display:'flex', flexDirection:'row',alignItems:'center'}}>
               <div style={{width:'40px', height:'40px', backgroundColor:'crimson',borderRadius:'90px',margin:'6px'}}></div>
                 <p style={{fontSize:20, margin:'0px'}}>{item.playerName}</p>
@@ -239,7 +238,7 @@ export default function GameBoard({...props}) {
       <div className='players-in-lobby'>
         <div style={{flex:2, fontSize:20, paddingLeft:'10px'}}>
           {gameState.stageOfTheGame <= gameStageMinimum &&
-            <p>{'Current Question'}</p>
+            <p>{'Contenders Ready'}</p>
           }
           {gameState.stageOfTheGame > gameStageMinimum &&
             <p>{gameState.questionsAndAnswers[gameStageMinimum-1].question}</p>
@@ -299,7 +298,7 @@ export default function GameBoard({...props}) {
         gameState.players.map(player => {
           if(player.playerID != reduxId.id){
             return(
-              <button className='app-button unselected-contender' onClick={()=>{submitVoteForImpostor(player.playerID)}}>
+              <button key={player.playerID} className='app-button unselected-contender' onClick={()=>{submitVoteForImpostor(player.playerID)}}>
                 {player.playerName}
               </button>
             )
@@ -365,6 +364,7 @@ export default function GameBoard({...props}) {
         yourOptions.map((item) => {
           return(
             <button 
+              key={item}
               className={answerToQuestion === item ? 'selected-contender app-button' : 'unselected-contender app-button'} 
               onClick={()=>{setAnswerToQuestion(item)}}>{item}
             </button>
@@ -448,7 +448,7 @@ export default function GameBoard({...props}) {
     <div className={'Container'}>
       <div className='max-width-container'>
 
-      <div className='title-container'>
+      <div className='title-container white'>
         {returnHeaderText()}
       </div>
 

@@ -29,7 +29,6 @@ export default function ExistingGame({...props}) {
           }
 
         }
-      console.log('got reply! ',dataFromServer)
     }
 
   }, []);
@@ -42,7 +41,6 @@ export default function ExistingGame({...props}) {
         lobbyId: lobbyId
       }))
     }else{
-      console.log('make a user name')
     }
   }
 

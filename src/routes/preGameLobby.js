@@ -16,7 +16,7 @@ export default function PreGameLobby({...props}) {
     useEffect(() => {
        
         props.client.onopen = () => {
-          console.log('websocket connected')
+
         }
         props.client.onmessage = (message) =>{
           const dataFromServer = JSON.parse(message.data);
@@ -36,7 +36,6 @@ export default function PreGameLobby({...props}) {
           if(dataFromServer.type === 'LOBBY_CLOSED'){
             window.alert('player left lobby. Game disbanded')
             dispatch({type:'UPDATE_PLAYER',payload: {}});
-            console.log('fuck')
             navigate('/')
           }
 
@@ -44,7 +43,6 @@ export default function PreGameLobby({...props}) {
             navigate('/GameBoard')
           }
 
-          console.log('got reply! ',dataFromServer)
         }
         // return () => {
         //     dispatch({type:'UPDATE_PLAYER',payload: {}});
@@ -60,7 +58,7 @@ export default function PreGameLobby({...props}) {
             userId: userId,
             }))
         }else{
-            console.log('make a user name')
+
         }
     }
 
@@ -71,7 +69,7 @@ export default function PreGameLobby({...props}) {
                 lobbyId: lobbyId
         }))
         }else{
-            console.log('start game failure')
+
         }
     }
 

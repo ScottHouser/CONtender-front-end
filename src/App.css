@@ -274,7 +274,6 @@
   background: blue;
   color: white;
   border: 0;
-  -webkit-appearance: none;
 }
 
 .lobby-code-text {
@@ -426,6 +425,10 @@
   justify-content: center;
   width: 100%;
   margin-bottom: 30px;
+}
+
+.white {
+  color: white
 }
 
 @media only screen and (max-width: 600px) {
